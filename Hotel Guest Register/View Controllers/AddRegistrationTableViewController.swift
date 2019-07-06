@@ -39,6 +39,30 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
         }
     }
     
+    var registration: Registration? {
+
+        guard let roomType = roomType else { return nil }
+
+        let firstName = firsNameTextField.text ?? ""
+        let lastName = lastNameTextField.text ?? ""
+        let email = emailTextField.text ?? ""
+        let checkInDate = checkInDatePicker.date
+        let checkOutDate = checkOutDatePicker.date
+        let numberOfAdults = Int(adultsStepper.value)
+        let numberOfChildren = Int(childrenStepper.value)
+        let hasWifi = wifiSwitch.isOn
+
+        return Registration(firstName: firstName,
+                            lastName: lastName,
+                            emailAddress: email,
+                            checkInDate: checkInDate,
+                            checkOutDate: checkOutDate,
+                            numberOfAdults: numberOfAdults,
+                            numberOfChildren: numberOfChildren,
+                            roomType: roomType,
+                            wifi: hasWifi)
+    }
+    
     var roomType: RoomType?
     
     override func viewDidLoad() {
